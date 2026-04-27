@@ -1,0 +1,205 @@
+/* generated using openapi-typescript-codegen -- do not edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import type { BaseHttpRequest } from './core/BaseHttpRequest';
+import type { OpenAPIConfig } from './core/OpenAPI';
+import { FetchHttpRequest } from './core/FetchHttpRequest';
+import { ActionsCapabilitiesService } from './services/ActionsCapabilitiesService';
+import { ActivitiesService } from './services/ActivitiesService';
+import { AttachmentsService } from './services/AttachmentsService';
+import { BudgetsService } from './services/BudgetsService';
+import { CategoriesService } from './services/CategoriesService';
+import { CollectionsService } from './services/CollectionsService';
+import { ConfigurationService } from './services/ConfigurationService';
+import { CustomActionsService } from './services/CustomActionsService';
+import { CustomOptionsService } from './services/CustomOptionsService';
+import { DefaultService } from './services/DefaultService';
+import { DocumentsService } from './services/DocumentsService';
+import { EmojiReactionsService } from './services/EmojiReactionsService';
+import { FavoritesService } from './services/FavoritesService';
+import { FileLinksService } from './services/FileLinksService';
+import { FormsService } from './services/FormsService';
+import { GridsService } from './services/GridsService';
+import { GroupsService } from './services/GroupsService';
+import { HelpTextsService } from './services/HelpTextsService';
+import { MeetingsService } from './services/MeetingsService';
+import { MembershipsService } from './services/MembershipsService';
+import { NewsService } from './services/NewsService';
+import { NotificationsService } from './services/NotificationsService';
+import { OAuth2Service } from './services/OAuth2Service';
+import { PortfoliosService } from './services/PortfoliosService';
+import { PostsService } from './services/PostsService';
+import { PreviewingService } from './services/PreviewingService';
+import { PrincipalsService } from './services/PrincipalsService';
+import { PrioritiesService } from './services/PrioritiesService';
+import { ProgramsService } from './services/ProgramsService';
+import { ProjectPhaseDefinitionsService } from './services/ProjectPhaseDefinitionsService';
+import { ProjectPhasesService } from './services/ProjectPhasesService';
+import { ProjectsService } from './services/ProjectsService';
+import { QueriesService } from './services/QueriesService';
+import { QueryColumnsService } from './services/QueryColumnsService';
+import { QueryFilterInstanceSchemaService } from './services/QueryFilterInstanceSchemaService';
+import { QueryFiltersService } from './services/QueryFiltersService';
+import { QueryOperatorsService } from './services/QueryOperatorsService';
+import { QuerySortBysService } from './services/QuerySortBysService';
+import { RelationsService } from './services/RelationsService';
+import { RemindersService } from './services/RemindersService';
+import { RevisionsService } from './services/RevisionsService';
+import { RolesService } from './services/RolesService';
+import { RootService } from './services/RootService';
+import { SchemasService } from './services/SchemasService';
+import { SprintsService } from './services/SprintsService';
+import { StatusesService } from './services/StatusesService';
+import { TimeEntriesService } from './services/TimeEntriesService';
+import { TimeEntryActivitiesService } from './services/TimeEntryActivitiesService';
+import { TypesService } from './services/TypesService';
+import { UserPreferencesService } from './services/UserPreferencesService';
+import { UsersService } from './services/UsersService';
+import { UserWorkingTimesService } from './services/UserWorkingTimesService';
+import { ValuesPropertyService } from './services/ValuesPropertyService';
+import { VersionsService } from './services/VersionsService';
+import { ViewsService } from './services/ViewsService';
+import { WikiPagesService } from './services/WikiPagesService';
+import { WorkPackagesService } from './services/WorkPackagesService';
+import { WorkScheduleService } from './services/WorkScheduleService';
+import { WorkspaceService } from './services/WorkspaceService';
+import { WorkspacesService } from './services/WorkspacesService';
+type HttpRequestConstructor = new (config: OpenAPIConfig) => BaseHttpRequest;
+export class OpenProjectGeneratedClient {
+    public readonly actionsCapabilities: ActionsCapabilitiesService;
+    public readonly activities: ActivitiesService;
+    public readonly attachments: AttachmentsService;
+    public readonly budgets: BudgetsService;
+    public readonly categories: CategoriesService;
+    public readonly collections: CollectionsService;
+    public readonly configuration: ConfigurationService;
+    public readonly customActions: CustomActionsService;
+    public readonly customOptions: CustomOptionsService;
+    public readonly default: DefaultService;
+    public readonly documents: DocumentsService;
+    public readonly emojiReactions: EmojiReactionsService;
+    public readonly favorites: FavoritesService;
+    public readonly fileLinks: FileLinksService;
+    public readonly forms: FormsService;
+    public readonly grids: GridsService;
+    public readonly groups: GroupsService;
+    public readonly helpTexts: HelpTextsService;
+    public readonly meetings: MeetingsService;
+    public readonly memberships: MembershipsService;
+    public readonly news: NewsService;
+    public readonly notifications: NotificationsService;
+    public readonly oAuth2: OAuth2Service;
+    public readonly portfolios: PortfoliosService;
+    public readonly posts: PostsService;
+    public readonly previewing: PreviewingService;
+    public readonly principals: PrincipalsService;
+    public readonly priorities: PrioritiesService;
+    public readonly programs: ProgramsService;
+    public readonly projectPhaseDefinitions: ProjectPhaseDefinitionsService;
+    public readonly projectPhases: ProjectPhasesService;
+    public readonly projects: ProjectsService;
+    public readonly queries: QueriesService;
+    public readonly queryColumns: QueryColumnsService;
+    public readonly queryFilterInstanceSchema: QueryFilterInstanceSchemaService;
+    public readonly queryFilters: QueryFiltersService;
+    public readonly queryOperators: QueryOperatorsService;
+    public readonly querySortBys: QuerySortBysService;
+    public readonly relations: RelationsService;
+    public readonly reminders: RemindersService;
+    public readonly revisions: RevisionsService;
+    public readonly roles: RolesService;
+    public readonly root: RootService;
+    public readonly schemas: SchemasService;
+    public readonly sprints: SprintsService;
+    public readonly statuses: StatusesService;
+    public readonly timeEntries: TimeEntriesService;
+    public readonly timeEntryActivities: TimeEntryActivitiesService;
+    public readonly types: TypesService;
+    public readonly userPreferences: UserPreferencesService;
+    public readonly users: UsersService;
+    public readonly userWorkingTimes: UserWorkingTimesService;
+    public readonly valuesProperty: ValuesPropertyService;
+    public readonly versions: VersionsService;
+    public readonly views: ViewsService;
+    public readonly wikiPages: WikiPagesService;
+    public readonly workPackages: WorkPackagesService;
+    public readonly workSchedule: WorkScheduleService;
+    public readonly workspace: WorkspaceService;
+    public readonly workspaces: WorkspacesService;
+    public readonly request: BaseHttpRequest;
+    constructor(config?: Partial<OpenAPIConfig>, HttpRequest: HttpRequestConstructor = FetchHttpRequest) {
+        this.request = new HttpRequest({
+            BASE: config?.BASE ?? 'https://qa.openproject-edge.com',
+            VERSION: config?.VERSION ?? '3',
+            WITH_CREDENTIALS: config?.WITH_CREDENTIALS ?? false,
+            CREDENTIALS: config?.CREDENTIALS ?? 'include',
+            TOKEN: config?.TOKEN,
+            USERNAME: config?.USERNAME,
+            PASSWORD: config?.PASSWORD,
+            HEADERS: config?.HEADERS,
+            ENCODE_PATH: config?.ENCODE_PATH,
+        });
+        this.actionsCapabilities = new ActionsCapabilitiesService(this.request);
+        this.activities = new ActivitiesService(this.request);
+        this.attachments = new AttachmentsService(this.request);
+        this.budgets = new BudgetsService(this.request);
+        this.categories = new CategoriesService(this.request);
+        this.collections = new CollectionsService(this.request);
+        this.configuration = new ConfigurationService(this.request);
+        this.customActions = new CustomActionsService(this.request);
+        this.customOptions = new CustomOptionsService(this.request);
+        this.default = new DefaultService(this.request);
+        this.documents = new DocumentsService(this.request);
+        this.emojiReactions = new EmojiReactionsService(this.request);
+        this.favorites = new FavoritesService(this.request);
+        this.fileLinks = new FileLinksService(this.request);
+        this.forms = new FormsService(this.request);
+        this.grids = new GridsService(this.request);
+        this.groups = new GroupsService(this.request);
+        this.helpTexts = new HelpTextsService(this.request);
+        this.meetings = new MeetingsService(this.request);
+        this.memberships = new MembershipsService(this.request);
+        this.news = new NewsService(this.request);
+        this.notifications = new NotificationsService(this.request);
+        this.oAuth2 = new OAuth2Service(this.request);
+        this.portfolios = new PortfoliosService(this.request);
+        this.posts = new PostsService(this.request);
+        this.previewing = new PreviewingService(this.request);
+        this.principals = new PrincipalsService(this.request);
+        this.priorities = new PrioritiesService(this.request);
+        this.programs = new ProgramsService(this.request);
+        this.projectPhaseDefinitions = new ProjectPhaseDefinitionsService(this.request);
+        this.projectPhases = new ProjectPhasesService(this.request);
+        this.projects = new ProjectsService(this.request);
+        this.queries = new QueriesService(this.request);
+        this.queryColumns = new QueryColumnsService(this.request);
+        this.queryFilterInstanceSchema = new QueryFilterInstanceSchemaService(this.request);
+        this.queryFilters = new QueryFiltersService(this.request);
+        this.queryOperators = new QueryOperatorsService(this.request);
+        this.querySortBys = new QuerySortBysService(this.request);
+        this.relations = new RelationsService(this.request);
+        this.reminders = new RemindersService(this.request);
+        this.revisions = new RevisionsService(this.request);
+        this.roles = new RolesService(this.request);
+        this.root = new RootService(this.request);
+        this.schemas = new SchemasService(this.request);
+        this.sprints = new SprintsService(this.request);
+        this.statuses = new StatusesService(this.request);
+        this.timeEntries = new TimeEntriesService(this.request);
+        this.timeEntryActivities = new TimeEntryActivitiesService(this.request);
+        this.types = new TypesService(this.request);
+        this.userPreferences = new UserPreferencesService(this.request);
+        this.users = new UsersService(this.request);
+        this.userWorkingTimes = new UserWorkingTimesService(this.request);
+        this.valuesProperty = new ValuesPropertyService(this.request);
+        this.versions = new VersionsService(this.request);
+        this.views = new ViewsService(this.request);
+        this.wikiPages = new WikiPagesService(this.request);
+        this.workPackages = new WorkPackagesService(this.request);
+        this.workSchedule = new WorkScheduleService(this.request);
+        this.workspace = new WorkspaceService(this.request);
+        this.workspaces = new WorkspacesService(this.request);
+    }
+}
+

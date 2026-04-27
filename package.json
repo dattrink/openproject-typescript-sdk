@@ -1,0 +1,63 @@
+{
+  "name": "@ttdat/openproject-sdk",
+  "version": "0.1.0",
+  "description": "TypeScript SDK for OpenProject 17 API v3 with generated OpenAPI client and typed convenience wrappers",
+  "keywords": [
+    "openproject",
+    "sdk",
+    "typescript",
+    "api",
+    "swagger",
+    "openapi"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "clean": "rimraf dist coverage",
+    "sync:spec": "node ./scripts/sync-spec.mjs",
+    "generate:api": "npm run sync:spec && rimraf ./src/generated && openapi --input ./spec/openproject-v3.json --output ./src/generated --client fetch --useUnionTypes --name OpenProjectGeneratedClient && node ./scripts/patch-generated.mjs",
+    "generate:api:check": "npm run generate:api && npm run typecheck",
+    "build": "npm run clean && tsup",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
+    "test": "vitest run",
+    "test:unit": "vitest run test/unit",
+    "test:integration": "vitest run test/integration",
+    "test:coverage": "vitest run --coverage",
+    "prepack": "npm run generate:api && npm run typecheck && npm run test:unit && npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^24.6.0",
+    "@typescript-eslint/eslint-plugin": "^8.43.0",
+    "@typescript-eslint/parser": "^8.43.0",
+    "typescript-eslint": "^8.43.0",
+    "@vitest/coverage-v8": "^3.2.4",
+    "eslint": "^9.36.0",
+    "openapi-typescript-codegen": "^0.29.0",
+    "prettier": "^3.6.2",
+    "rimraf": "^6.0.1",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4"
+  }
+}
