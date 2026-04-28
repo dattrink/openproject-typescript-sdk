@@ -1,5 +1,5 @@
 {
-  "name": "@ttdat/openproject-sdk",
+  "name": "@dattrink/openproject-sdk",
   "version": "0.1.0",
   "description": "TypeScript SDK for OpenProject 17 API v3 with generated OpenAPI client and typed convenience wrappers",
   "keywords": [
@@ -28,6 +28,9 @@
   ],
   "engines": {
     "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "clean": "rimraf dist coverage",

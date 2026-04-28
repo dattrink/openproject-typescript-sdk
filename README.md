@@ -1,68 +1,35 @@
 # OpenProject TypeScript SDK (OpenProject 17)
 
-TypeScript SDK để giao tiếp OpenProject API v3 theo OpenAPI specification, có:
+TypeScript SDK để tích hợp OpenProject API v3 trong ứng dụng Node.js/TypeScript.
 
-- generated client từ swagger/openapi
-- typed wrapper thân thiện cho các nhóm API chính
-- hỗ trợ auth Basic (apikey), Bearer/OAuth2, Session
-- unit test + integration smoke test
+- Generated OpenAPI client (low-level)
+- Wrapper API typed và dễ dùng cho các nhóm endpoint chính
+- Hỗ trợ Basic (apikey), Bearer/OAuth2, Session auth
+
+## Yêu cầu
+
+- Node.js `>=20`
 
 ## Cài đặt
 
 ```bash
-npm install
-```
-
-## Đồng bộ OpenAPI spec và generate SDK
-
-```bash
-npm run generate:api
-```
-
-Lệnh trên sẽ:
-
-1. Tải spec từ `https://www.openproject.org/docs/api/v3/spec.json`
-2. Lưu vào `spec/openproject-v3.json`
-3. Generate low-level client vào `src/generated`
-4. Áp dụng patch hậu-generate để sửa bug cú pháp từ generator ở `QueriesService`
-
-## Build và test
-
-```bash
-npm run typecheck
-npm run lint
-npm run build
-npm run test:unit
-npm run test:integration
-npm run test:coverage
+npm i @dattrink/openproject-sdk
 ```
 
 ## Sử dụng nhanh
 
-### 1) Khởi tạo client với domain + API key động (Basic auth)
+### 1) Khởi tạo client với Basic auth (API key)
 
 ```ts
-import { OpenProjectClient } from '@ttdat/openproject-sdk';
+import { OpenProjectClient } from '@dattrink/openproject-sdk';
 
-type OpenProjectUserConfig = {
-  domain: string;
-  apiKey: string;
-};
-
-function createClient(config: OpenProjectUserConfig) {
-  return new OpenProjectClient({
-    baseUrl: config.domain,
-    auth: {
-      type: 'basic',
-      username: 'apikey',
-      apiKey: config.apiKey,
-    },
-  });
-}
-
-const client = createClient({
-  domain: 'https://your-openproject-domain.example',
-  apiKey: '<user-api-key>',
+const client = new OpenProjectClient({
+  baseUrl: 'https://your-openproject-domain.example',
+  auth: {
+    type: 'basic',
+    username: 'apikey',
+    apiKey: '<user-api-key>',
+  },
 });
 
 const root = await client.root.get();
@@ -98,15 +65,35 @@ await client.attachments.uploadForWorkPackage({
 });
 ```
 
+## Các kiểu auth khác
+
+### Bearer/OAuth2
+
+```ts
+const client = new OpenProjectClient({
+  baseUrl: 'https://your-openproject-domain.example',
+  auth: {
+    type: 'bearer',
+    token: '<access-token>',
+  },
+});
+```
+
+### Session cookie
+
+```ts
+const client = new OpenProjectClient({
+  baseUrl: 'https://your-openproject-domain.example',
+  auth: {
+    type: 'session',
+    cookie: '_open_project_session=<cookie-value>',
+  },
+});
+```
+
 ## Multi-tenant / multi-user runtime
 
-SDK này hỗ trợ đầy đủ mô hình domain và API key động theo từng user:
-
-- `baseUrl` là tham số động khi khởi tạo `OpenProjectClient`
-- `auth.apiKey` nhận trực tiếp string runtime hoặc token provider
-- mỗi request context có thể tạo một client riêng theo domain + key tương ứng
-
-Ví dụ tạo client theo request user:
+Mỗi user có thể dùng domain + credential riêng ở runtime:
 
 ```ts
 function getClientForUser(user: { openProjectDomain: string; openProjectApiKey: string }) {
@@ -121,16 +108,29 @@ function getClientForUser(user: { openProjectDomain: string; openProjectApiKey: 
 }
 ```
 
-## Cấu trúc dự án
+## Development (cho maintainers của SDK)
 
-- `src/generated/` — generated code từ OpenAPI (không sửa tay)
-- `src/core/` — wrapper, auth, error mapping, HAL helpers
-- `src/types/` — kiểu dùng chung cho query/HAL
-- `spec/openproject-v3.json` — OpenAPI spec pin cục bộ
-- `scripts/sync-spec.mjs` — tải spec
-- `scripts/patch-generated.mjs` — patch hậu-generate
-- `test/unit/` — unit tests
-- `test/integration/` — integration smoke tests
+```bash
+npm install
+npm run typecheck
+npm run lint
+npm run build
+npm run test:unit
+npm run test:integration
+```
+
+## Đồng bộ OpenAPI spec và generate SDK
+
+```bash
+npm run generate:api
+```
+
+Lệnh trên sẽ:
+
+1. Tải spec từ `https://www.openproject.org/docs/api/v3/spec.json`
+2. Lưu vào `spec/openproject-v3.json`
+3. Generate low-level client vào `src/generated`
+4. Áp dụng patch hậu-generate cho `QueriesService`
 
 ## Scripts
 
@@ -147,4 +147,4 @@ function getClientForUser(user: { openProjectDomain: string; openProjectApiKey: 
 ## Ghi chú bảo mật
 
 - Không hardcode API key vào code, test, hoặc commit history.
-- Nhận API key từ input động của user/session hoặc secret manager của hệ thống bạn.
+- Lấy credential từ input runtime hoặc secret manager của hệ thống bạn.
